@@ -1,0 +1,7 @@
+{
+  "name": "appconversorkwh",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
