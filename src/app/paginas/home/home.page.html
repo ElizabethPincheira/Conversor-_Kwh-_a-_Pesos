@@ -1,5 +1,61 @@
-<ion-content>
+
+<ion-content [fullscreen]="true">
+
   <app-navbar />
-  <ion-title>Convertidor KWh a pesos</ion-title>
-  <ion-title>Precio a pagar</ion-title>
+
+  <h2>Conversor KWh a pesos</h2>
+
+<!-- card consumo -->
+
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Consumo KWh Hogar</ion-card-title>
+  </ion-card-header>
+  
+  <ion-card-content>
+    <ion-item>
+      <ion-input label="KWh utilizados (cod 180)" type="number" placeholder="0" 
+      [(ngModel)]="kwhUtilizadosMedidor"></ion-input>
+    </ion-item>
+  </ion-card-content>
+</ion-card>
+
+
+<!-- card aporte -->
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Aporte KWh Paneles solares</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-item>
+        <ion-input label="KWh generados (cod 280)" type="number" placeholder="0" 
+        [(ngModel)]="kwhGeneradosMedidor"></ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  
+
+<!-- boton calcular -->
+<div class="btn">
+  <ion-button (click)="calcular()" >calcular</ion-button>
+</div>
+
+
+
+
+  <!-- resultado total -->
+
+<div class="containerTotal">
+  <h3>Total a pagar</h3>
+  <p *ngIf="totalPagar !== null">{{totalPagar}}</p> 
+</div>  
+
+
+
+
 </ion-content>
+
+
+

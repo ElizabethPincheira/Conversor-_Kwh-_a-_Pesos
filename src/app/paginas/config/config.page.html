@@ -1,5 +1,66 @@
 <ion-content [fullscreen]="true">
+
   <app-navbar />
-  <h2>esto es configuraciones</h2>
+  
+  <h2>Configuración</h2>
+
+  <!-- card CONSUMO -->
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Ingresa la cantidad 
+        de KWh CONSUMIDOS y su precio de costo</ion-card-subtitle>
+        <ion-card-title>CONSUMO</ion-card-title>
+      </ion-card-header>
+      
+    <ion-card-content>
+
+      <ion-item>
+        <ion-input label="KWh consumidos" type="number" placeholder="0" [(ngModel)]="kwhConsumoIngresadoBoleta"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input label="Precio compra" type="number" placeholder="0" [(ngModel)]="precioConsumoIngresado"></ion-input>
+      </ion-item>
+
+       <!-- resultado automatico -->
+    <!-- <p *ngIf="resultadoPrecioDeCompra">Compro 1 KWh por: {{resultadoPrecioDeCompra}}</p> -->
+    </ion-card-content>
+  </ion-card>
+
+
+<!-- card APORTE -->
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Ingresa la cantidad 
+        de KWh APORTADOS y su precio de venta</ion-card-subtitle>
+        <ion-card-title>APORTE</ion-card-title>
+      </ion-card-header>
+      
+    <ion-card-content>
+        
+      <ion-item>
+        <ion-input label="KWh aportados" type="number" placeholder="0" [(ngModel)]="kwhAporteIngresadoBoleta"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input label="Precio venta" type="number" placeholder="0" [(ngModel)]="precioAporteIngresado"></ion-input>
+      </ion-item>
+
+       <!-- resultado automatico -->
+    <!-- <p *ngIf="resultadoPrecioDeVenta">Vendo 1 KWh por: {{resultadoPrecioDeVenta}}</p> -->
+    </ion-card-content>
+  </ion-card>
+
+
+  <!-- boton guardar -->
+   <div class="btn">
+     <ion-button (click)="guardarConfiguracion()" >Guardar configuración</ion-button>
+   </div>
+
+
 </ion-content>
+
+
 
