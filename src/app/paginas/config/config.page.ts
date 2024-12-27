@@ -7,6 +7,10 @@ import {
   IonCardTitle, IonCardSubtitle, IonCardContent, IonItem, IonInput, IonButton, IonToast
 } from '@ionic/angular/standalone';
 import { NavbarComponent } from 'src/app/componentes/navbar/navbar.component';
+import { NavController } from '@ionic/angular';
+
+
+
 
 // DECORADOR @Component
 @Component({
@@ -35,7 +39,11 @@ export class ConfigPage implements OnInit {
 
 
   datosDeEntrada=[]
-  constructor() { }
+
+
+  // EXPRESIÓN REGULAR PARA UTILIZAR PUNTOS O COMAS
+
+  constructor(private navCtrl: NavController) { }
 
   ngOnInit() {
   }
@@ -52,15 +60,15 @@ export class ConfigPage implements OnInit {
   guardarConfiguracion(){
   
     if ((this.kwhAporteIngresadoBoleta | this.precioConsumoIngresado | this.kwhAporteIngresadoBoleta | this.precioAporteIngresado)>0) {
-      console.log("todos los datos son  0 o mayor");
-      
+      console.log("todos los datos son mayores que 0");
+      this.navCtrl.navigateRoot('/home')
  
     // console.log(this.datosDeEntrada)
     localStorage.setItem("precioCompra", this.obtenerPrecios(this.kwhConsumoIngresadoBoleta, this.precioConsumoIngresado) + "");
     localStorage.setItem("precioVenta", this.obtenerPrecios(this.kwhAporteIngresadoBoleta, this.precioAporteIngresado) + "");
 
   }else{
-    console.log("hay uno o mas que es cero")
+    console.log("hay uno o mas valores que son un 0")
     this.toastMessage = 'Por favor, completa todos los campos antes de guardar.';
 
     this.isToastOpen = true;
