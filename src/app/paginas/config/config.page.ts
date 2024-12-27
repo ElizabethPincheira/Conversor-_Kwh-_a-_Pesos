@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
   IonContent, IonCard, IonCardHeader,
-  IonCardTitle, IonCardSubtitle, IonCardContent, IonItem, IonInput, IonButton
+  IonCardTitle, IonCardSubtitle, IonCardContent, IonItem, IonInput, IonButton, IonToast
 } from '@ionic/angular/standalone';
 import { NavbarComponent } from 'src/app/componentes/navbar/navbar.component';
 
@@ -16,7 +16,7 @@ import { NavbarComponent } from 'src/app/componentes/navbar/navbar.component';
   standalone: true,
   imports: [IonContent, CommonModule,
     FormsModule, NavbarComponent, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent,
-    IonItem, IonInput, IonButton]
+    IonItem, IonInput, IonButton,IonToast]
 })
 
 // CLASE ConfigPage
@@ -29,7 +29,12 @@ export class ConfigPage implements OnInit {
   // datos de aporte
   kwhAporteIngresadoBoleta :number = 0
   precioAporteIngresado :number = 0
+  isToastOpen = false;
+  toastMessage = 'Por favor, completa todos los campos antes de guardar.';
 
+
+
+  datosDeEntrada=[]
   constructor() { }
 
   ngOnInit() {
@@ -40,12 +45,27 @@ export class ConfigPage implements OnInit {
     return  precio/kwh;
   }
 
-  guardarConfiguracion(){
+  setOpen(isOpen: boolean) {
+    this.isToastOpen = isOpen;
+  }
 
+  guardarConfiguracion(){
+  
+    if ((this.kwhAporteIngresadoBoleta | this.precioConsumoIngresado | this.kwhAporteIngresadoBoleta | this.precioAporteIngresado)>0) {
+      console.log("todos los datos son  0 o mayor");
+      
+ 
+    // console.log(this.datosDeEntrada)
     localStorage.setItem("precioCompra", this.obtenerPrecios(this.kwhConsumoIngresadoBoleta, this.precioConsumoIngresado) + "");
     localStorage.setItem("precioVenta", this.obtenerPrecios(this.kwhAporteIngresadoBoleta, this.precioAporteIngresado) + "");
 
-  }
+  }else{
+    console.log("hay uno o mas que es cero")
+    this.toastMessage = 'Por favor, completa todos los campos antes de guardar.';
+
+    this.isToastOpen = true;
+  } 
+}
 
 
 }
