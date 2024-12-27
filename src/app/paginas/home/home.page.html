@@ -42,18 +42,13 @@
   <ion-button (click)="calcular()" >calcular</ion-button>
 </div>
 
-
-
-
   <!-- resultado total -->
 
 <div class="containerTotal">
   <h3>Total a pagar</h3>
-  <p *ngIf="totalPagar !== null">{{totalPagar}}</p> 
+  
+  <h3 *ngIf="totalPagar !== null">${{totalPagar}}</h3> 
 </div>  
-
-
-
 
 </ion-content>
 

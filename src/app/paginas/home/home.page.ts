@@ -20,7 +20,8 @@ export class HomePage {
 
   // ******VARIABLES*****
 
-totalPagar : number | null = null;
+ totalPagar : number | null = null;
+
 
   // datos ingresados
 kwhUtilizadosMedidor : number = 0
@@ -29,23 +30,26 @@ kwhGeneradosMedidor : number = 0
 // precios localstore
 // precio compra
 precioDeCompra : any = localStorage.getItem("precioCompra");
-numeroPrecioDeCompra : number | null = parseFloat(this.precioDeCompra);
+numeroPrecioDeCompra : number = parseFloat(this.precioDeCompra);
 
 // precio compra
 precioDeventa : any = localStorage.getItem("precioVenta");
-numeroPrecioDeVenta : number | null = parseFloat(this.precioDeventa);
+numeroPrecioDeVenta : number = parseFloat(this.precioDeventa);
 
 
-calcularValores( kwh : number, precio : number){
-  return kwh * precio
+calcular() {
+
+  let utilizado: number = this.kwhUtilizadosMedidor * this.numeroPrecioDeCompra;
+  let generado: number = this.kwhGeneradosMedidor * this.precioDeventa;
+
+  this.totalPagar = utilizado - generado ;
+
+  this.totalPagar = Math.round(this.totalPagar)
+
+  console.log(this.totalPagar);
 }
 
-calcular(){
-  console.log("boton")
-  this.totalPagar = 0;
 
-  console.log(this.totalPagar)
-}
 
 
 
